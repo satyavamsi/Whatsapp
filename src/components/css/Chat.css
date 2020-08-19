@@ -4,6 +4,12 @@
   flex-direction: column;
 }
 
+@media screen and (max-width: 572px) {
+  .chat {
+    flex: 1;
+  }
+}
+
 .chat__header {
   padding: 20px;
   display: flex;
@@ -95,4 +101,19 @@
 .chat__footer > .MuiSvgIcon-root {
   padding: 10px;
   color: gray;
+}
+
+.chat__sidebarToggle {
+  z-index: 1;
+  background-color: #dcf8c6 !important;
+  color: black !important;
+  padding: 10px !important;
+  margin: 5px !important;
+}
+
+.background__overlay {
+  position: absolute;
+  height: 93vh;
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 96vw;
 }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './Sidebar.css'
+import '../css/Sidebar.css'
 
 import { Avatar, IconButton } from '@material-ui/core';
 
@@ -10,11 +10,11 @@ import SearchOutlinedIcon from '@material-ui/icons/SearchOutlined';
 
 import SidebarChat from './SidebarChat';
 
-import db from './firebase';
-import { useStateValue } from './StateProvider';
+import db from '../helpers/firebase';
+import { useStateValue } from '../helpers/StateProvider';
 
 
-function Sidebar() {
+function Sidebar({ sidebarOpen, setRoomId, roomId, toggleSidebar }) {
 
     const [rooms, setRooms] = useState([]);
 
@@ -36,7 +36,7 @@ function Sidebar() {
 
     }, [])
     return (
-        <div className="sidebar">
+        <div className={`sidebar ${sidebarOpen ? 'sidebarOpen' : ''}`}>
             <div className="sidebar__header">
                 <Avatar src={user?.photoURL} />
                 <div className="sidebar__headerRight">
@@ -54,14 +54,14 @@ function Sidebar() {
             <div className="sidebar__search">
                 <div className="sidebar__searchContainer">
                     <SearchOutlinedIcon />
-                    <input placeholder="Search or start new chat"></input>
+                    <input placeholder="Search chat"></input>
                 </div>
 
             </div>
             <div className="sidebar__chats">
-                <SidebarChat addNewChat />
+                <SidebarChat addNewChat setRoomId={setRoomId} />
                 {rooms.map(room => (
-                    <SidebarChat key={room.id} id={room.id} name={room.data.name} />
+                    <SidebarChat roomId={roomId} setRoomId={setRoomId} key={room.id} id={room.id} name={room.data.name} toggleSidebar={toggleSidebar} />
                 ))}
             </div>
         </div>

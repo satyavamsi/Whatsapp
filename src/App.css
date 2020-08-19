@@ -15,3 +15,74 @@
   box-sizing: border-box;
   box-shadow: -1px 4px 20px 10px rgba(0, 0, 0, 0.2);
 }
+
+.app_dialog {
+  background-image: linear-gradient(
+    180deg,
+    transparent,
+    rgb(36 66 34),
+    #0a3805
+  );
+}
+
+.app_dialog_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.app_avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.app_avatar_image {
+  width: 200px !important;
+  height: 200px !important;
+}
+
+.app_button {
+  cursor: pointer;
+  color: #fff;
+  outline: none;
+  border: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+  border-radius: 0.2vw;
+  padding: 0.5rem 2rem;
+  background-color: #0a8d48 !important;
+  margin: 10px !important;
+}
+
+.app_button:hover {
+  background-color: #0a3805 !important;
+}
+
+.app_profile_name {
+  color: #fff;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  font-family: monospace;
+}
+
+.app_intro_description {
+  color: #fff;
+  text-align: center;
+  font-size: 1.3rem;
+  font-family: monospace;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.app_profile_link {
+  color: #fff;
+  text-decoration: underline !important;
+}
+
+.MuiDialog-paperScrollPaper {
+}
