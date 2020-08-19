@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import './App.css';
 
@@ -37,7 +37,9 @@ function App() {
                 <Route path="/rooms/:roomId">
                   <Chat setRoomId={selectRoomId} toggleSidebar={toggleSidebar} sidebarOpen={sidebarOpen} />
                 </Route>
-                <Route path="/"></Route>
+                <Route path="*">
+                  <Redirect to="/rooms/general" />
+                </Route>
               </Switch>
             </Router>
           </div>

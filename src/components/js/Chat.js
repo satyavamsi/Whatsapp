@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 import '../css/Chat.css'
 
@@ -28,6 +28,8 @@ function Chat({ toggleSidebar, setRoomId, sidebarOpen }) {
     const [input, setInput] = useState('');
     const { roomId } = useParams();
 
+    const [redirect, setRedirect] = useState(false);
+
     const [roomName, setRoomName] = useState("");
 
     const [{ user }, dispatch] = useStateValue();
@@ -54,9 +56,13 @@ function Chat({ toggleSidebar, setRoomId, sidebarOpen }) {
         setMessages([]);
         if (roomId) {
             db.collection('rooms').doc(roomId).onSnapshot(
-                snapshot => (
-                    setRoomName(snapshot.data().name)
-                )
+                (snapshot) => {
+                    if (snapshot.data()) {
+                        setRoomName(snapshot.data().name)
+                    } else {
+                        setRedirect(true);
+                    }
+                }
             )
 
             db.collection('rooms').doc(roomId).
@@ -89,6 +95,7 @@ function Chat({ toggleSidebar, setRoomId, sidebarOpen }) {
 
     return (
         <div className="chat">
+            {redirect && <Redirect to="/rooms/general" />}
             <div className="chat__header">
                 <Avatar src={`https://avatars.dicebear.com/api/human/${seed}.svg`} />
                 <div className="chat__headerInfo">
